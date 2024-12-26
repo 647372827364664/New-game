@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 20px;
+  animation: fadeIn 1s;
+}
+
+button {
+  margin: 10px auto;
+  padding: 15px 30px;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 15px rgba(255, 126, 95, 0.6);
+}
+
+.screen {
+  display: none;
+  animation: slideIn 1s;
+}
+
+.screen.active {
+  display: block;
+}
+
+#shop-items, #levels-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.shop-item, .level-button {
+  width: 120px;
+  height: 80px;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shop-item:hover, .level-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+}
+
+.level-button.completed {
+  background: green;
+}
+
+.level-button.incomplete {
+  background: red;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
