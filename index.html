@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Home Screen -->
+  <div id="home-screen" class="screen active">
+    <h1>Welcome to Ultimate Game</h1>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="openShop()">Shop</button>
+    <button onclick="openLevels()">Levels</button>
+    <button onclick="exitGame()">Exit</button>
+  </div>
+
+  <!-- Shop Screen -->
+  <div id="shop-screen" class="screen">
+    <h1>Shop</h1>
+    <p id="coins-display">Coins: 100</p>
+    <div id="shop-items"></div>
+    <button onclick="goToHome()">Back</button>
+  </div>
+
+  <!-- Levels Screen -->
+  <div id="levels-screen" class="screen">
+    <h1>Levels</h1>
+    <div id="levels-grid"></div>
+    <button onclick="goToHome()">Back</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-screen" class="screen">
+    <h1 id="level-title">Level 1</h1>
+    <p id="question"></p>
+    <input type="text" id="answer-input" placeholder="Your answer">
+    <button onclick="submitAnswer()">Submit</button>
+    <button onclick="goToLevels()">Back</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+                </html>
