@@ -7,24 +7,38 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Login Screen -->
+  <!-- Login/Signup Screen -->
   <div id="login-screen" class="screen active">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
-    <h1>Login</h1>
-    <img src="assets/icons/login_icon.png" alt="Login Icon" class="icon">
-    <input type="text" id="username" placeholder="Enter your username">
-    <button onclick="login()">Login</button>
+    <h1>Login or Signup</h1>
+    <div id="login-container">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p>Don't have an account? <button onclick="showSignup()">Sign Up</button></p>
+    </div>
+  </div>
+
+  <!-- Signup Screen -->
+  <div id="signup-screen" class="screen">
+    <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
+    <h1>Sign Up</h1>
+    <div id="signup-container">
+      <input type="text" id="signup-username" placeholder="Username">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button onclick="signup()">Sign Up</button>
+      <p>Already have an account? <button onclick="showLogin()">Login</button></p>
+    </div>
   </div>
 
   <!-- Home Screen -->
   <div id="home-screen" class="screen">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
     <h1>Welcome, <span id="user-name"></span></h1>
-    <img src="assets/icons/home_icon.png" alt="Home Icon" class="icon">
     <button onclick="startGame()">Start Game</button>
     <button onclick="openShop()">Shop</button>
     <button onclick="openLevels()">Levels</button>
-    <button onclick="exitGame()">Exit</button>
+    <button onclick="logout()">Logout</button>
   </div>
 
   <!-- Shop Screen -->
