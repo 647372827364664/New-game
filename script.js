@@ -7,18 +7,31 @@ let buttonClickSound = new Audio('assets/sounds/button-click.mp3'); // Button cl
 
 // Initialize Game
 document.addEventListener('DOMContentLoaded', () => {
-  updateCoinsDisplay();
-  applyBackground(currentBackground);
-  setupEventListeners();
+  initializeGame();
   startBackgroundMusic();
 });
 
-// Screen Navigation
+// Initialize Game and Setup Event Listeners
+function initializeGame() {
+  // Check if user is logged in
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  if (loggedInUser) {
+    document.getElementById('user-name').textContent = loggedInUser.username;
+    showScreen('home-screen');
+  } else {
+    showScreen('login-screen');
+  }
+
+  // Set up event listeners for navigation and actions
+  setupEventListeners();
+}
+
+// Show Specific Screen
 function showScreen(screenId) {
   document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
 
-  // Update background dynamically based on screen
+  // Update background dynamically based on the screen
   const screenBackgrounds = {
     'login-screen': 'assets/backgrounds/background1.jpg',
     'signup-screen': 'assets/backgrounds/background2.jpg',
@@ -30,15 +43,66 @@ function showScreen(screenId) {
   applyBackground(screenBackgrounds[screenId] || currentBackground);
 }
 
-// Background Functions
+// Apply Background to Body
 function applyBackground(imageUrl) {
   document.body.style.backgroundImage = `url('${imageUrl}')`;
 }
 
-// Button Click Sound
+// Play Button Click Sound
 function playButtonSound() {
   buttonClickSound.currentTime = 0;
   buttonClickSound.play();
+}
+
+// Login Functionality
+function login() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+  const user = storedUsers.find(user => user.username === username && user.password === password);
+
+  if (user) {
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    document.getElementById('user-name').textContent = username;
+    playButtonSound();
+    alert(`Welcome back, ${username}!`);
+    showScreen('home-screen');
+  } else {
+    alert('Invalid username or password!');
+  }
+}
+
+// Signup Functionality
+function signup() {
+  const username = document.getElementById('signup-username').value.trim();
+  const password = document.getElementById('signup-password').value.trim();
+
+  if (!username || !password) {
+    alert('Please enter a valid username and password!');
+    return;
+  }
+
+  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+  const userExists = storedUsers.some(user => user.username === username);
+
+  if (userExists) {
+    alert('Username already exists!');
+    return;
+  }
+
+  storedUsers.push({ username, password, coins: 500 });
+  localStorage.setItem('users', JSON.stringify(storedUsers));
+
+  alert('Signup successful! You can now login.');
+  showScreen('login-screen');
+}
+
+// Logout Functionality
+function logout() {
+  localStorage.removeItem('loggedInUser');
+  playButtonSound();
+  showScreen('login-screen');
 }
 
 // Shop Functions
@@ -63,6 +127,7 @@ function buyItem(itemType, price, backgroundImage) {
   }
 }
 
+// Update Coins Display
 function updateCoinsDisplay() {
   const coinsDisplay = document.querySelector('#coins-display');
   if (coinsDisplay) {
@@ -81,16 +146,6 @@ function selectBackground(backgroundImage) {
   }
 }
 
-// Settings
-function toggleSetting(settingId) {
-  const setting = document.getElementById(settingId);
-  if (setting.checked) {
-    if (settingId === 'music-toggle') startBackgroundMusic();
-  } else {
-    if (settingId === 'music-toggle') stopBackgroundMusic();
-  }
-}
-
 // Background Music
 function startBackgroundMusic() {
   backgroundMusic.loop = true;
@@ -105,17 +160,12 @@ function stopBackgroundMusic() {
 
 // Event Listeners
 function setupEventListeners() {
-  // Navigation buttons
-  document.getElementById('show-login').addEventListener('click', () => {
-    playButtonSound();
-    showScreen('login-screen');
-  });
+  // Login and Signup Buttons
+  document.getElementById('login-button').addEventListener('click', login);
+  document.getElementById('signup-button').addEventListener('click', signup);
+  document.getElementById('logout-button').addEventListener('click', logout);
 
-  document.getElementById('show-signup').addEventListener('click', () => {
-    playButtonSound();
-    showScreen('signup-screen');
-  });
-
+  // Navigation Buttons
   document.getElementById('play-button').addEventListener('click', () => {
     playButtonSound();
     alert('Starting game...'); // Replace with game logic
@@ -136,12 +186,12 @@ function setupEventListeners() {
     showScreen('settings-screen');
   });
 
-  document.getElementById('logout-button').addEventListener('click', () => {
+  document.getElementById('back-to-home').addEventListener('click', () => {
     playButtonSound();
-    showScreen('login-screen');
+    showScreen('home-screen');
   });
 
-  // Shop buttons
+  // Shop Buttons
   document.getElementById('buy-hint-button').addEventListener('click', () => {
     playButtonSound();
     buyItem('hint', 50);
@@ -157,7 +207,7 @@ function setupEventListeners() {
     buyItem('background', 150, 'assets/backgrounds/background2.jpg');
   });
 
-  // My Collection buttons
+  // My Collection Buttons
   document.getElementById('use-bg1-button').addEventListener('click', () => {
     playButtonSound();
     selectBackground('assets/backgrounds/background1.jpg');
@@ -166,22 +216,6 @@ function setupEventListeners() {
   document.getElementById('use-bg2-button').addEventListener('click', () => {
     playButtonSound();
     selectBackground('assets/backgrounds/background2.jpg');
-  });
-
-  // Settings toggles
-  document.getElementById('music-toggle').addEventListener('change', () => {
-    playButtonSound();
-    toggleSetting('music-toggle');
-  });
-
-  document.getElementById('volume-toggle').addEventListener('change', () => {
-    playButtonSound();
-    alert('Volume settings adjusted!'); // Extend with volume control logic
-  });
-
-  document.getElementById('vibration-toggle').addEventListener('change', () => {
-    playButtonSound();
-    alert('Vibration toggled!'); // Extend with vibration logic
   });
 }
 
@@ -193,4 +227,4 @@ function togglePassword(inputId) {
   } else {
     input.type = 'password';
   }
-}
+      }
