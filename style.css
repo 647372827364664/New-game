@@ -1,17 +1,35 @@
+ remain unchanged */
+/* Logo Styling */
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  animation: fadeIn 1.5s;
+}
+
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #282c34;
-  color: white;
   margin: 0;
   padding: 0;
+  background-color: #282c34;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin: 20px;
-  animation: fadeIn 1s;
+input {
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
 }
 
 button {
@@ -33,46 +51,15 @@ button:hover {
 
 .screen {
   display: none;
-  animation: slideIn 1s;
+  animation: fadeIn 1s;
 }
 
 .screen.active {
   display: block;
 }
 
-#shop-items, #levels-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
-}
-
-.shop-item, .level-button {
-  width: 120px;
-  height: 80px;
-  background: #333;
-  color: white;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.shop-item:hover, .level-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
-}
-
-.level-button.completed {
-  background: green;
-}
-
-.level-button.incomplete {
-  background: red;
+p {
+  margin: 5px;
 }
 
 /* Animations */
@@ -84,36 +71,3 @@ button:hover {
     opacity: 1;
   }
 }
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-/* Logo Styling */
-.logo {
-  width: 120px;
-  height: auto;
-  margin: 20px auto;
-  display: block;
-  animation: fadeIn 1.5s;
-}
-
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #282c34;
-  color: white;
-  margin: 0;
-  padding: 0;
-  background-image: url('assets/backgrounds/background1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* Other existing styles remain unchanged */
