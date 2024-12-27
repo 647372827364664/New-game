@@ -7,15 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Login/Signup Screen -->
+  <!-- Login Screen -->
   <div id="login-screen" class="screen active">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
-    <h1>Login or Signup</h1>
+    <h1>Login</h1>
     <div id="login-container">
-      <input type="text" id="username" placeholder="Username">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <p>Don't have an account? <button onclick="showSignup()">Sign Up</button></p>
+      <input type="text" id="username" placeholder="Enter Username">
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button class="toggle-password" onclick="togglePassword('password')">&#128065;</button>
+      </div>
+      <button id="login-button">Login</button>
+      <p>Don't have an account? <button id="show-signup">Sign Up</button></p>
     </div>
   </div>
 
@@ -24,10 +27,13 @@
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
     <h1>Sign Up</h1>
     <div id="signup-container">
-      <input type="text" id="signup-username" placeholder="Username">
-      <input type="password" id="signup-password" placeholder="Password">
-      <button onclick="signup()">Sign Up</button>
-      <p>Already have an account? <button onclick="showLogin()">Login</button></p>
+      <input type="text" id="signup-username" placeholder="Enter Username">
+      <div class="password-container">
+        <input type="password" id="signup-password" placeholder="Enter Password">
+        <button class="toggle-password" onclick="togglePassword('signup-password')">&#128065;</button>
+      </div>
+      <button id="signup-button">Sign Up</button>
+      <p>Already have an account? <button id="show-login">Login</button></p>
     </div>
   </div>
 
@@ -35,36 +41,63 @@
   <div id="home-screen" class="screen">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
     <h1>Welcome, <span id="user-name"></span></h1>
-    <button onclick="startGame()">Start Game</button>
-    <button onclick="openShop()">Shop</button>
-    <button onclick="openLevels()">Levels</button>
-    <button onclick="logout()">Logout</button>
+    <div class="button-container">
+      <button id="play-button">Play</button>
+      <button id="shop-button">Shop</button>
+      <button id="levels-button">Levels</button>
+      <button id="settings-button">Settings</button>
+      <button id="logout-button">Logout</button>
+    </div>
   </div>
 
   <!-- Shop Screen -->
   <div id="shop-screen" class="screen">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
     <h1>Shop</h1>
-    <p id="coins-display">Coins: 100</p>
-    <div id="shop-items"></div>
-    <button onclick="goToHome()">Back</button>
+    <div class="shop-section">
+      <h2>Buy Hints</h2>
+      <button class="custom-button" id="buy-hint-button">Buy Hint - 50 Coins</button>
+    </div>
+    <div class="shop-section">
+      <h2>Buy Backgrounds</h2>
+      <button class="custom-button" id="buy-bg1-button">Background 1 - 100 Coins</button>
+      <button class="custom-button" id="buy-bg2-button">Background 2 - 150 Coins</button>
+    </div>
+    <div class="shop-section">
+      <h2>My Collection</h2>
+      <button class="custom-button" id="use-bg1-button">Use Background 1</button>
+      <button class="custom-button" id="use-bg2-button">Use Background 2</button>
+    </div>
+    <button id="back-to-home">Back</button>
   </div>
 
   <!-- Levels Screen -->
   <div id="levels-screen" class="screen">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
     <h1>Levels</h1>
-    <div id="levels-grid"></div>
-    <button onclick="goToHome()">Back</button>
+    <div id="levels-grid">
+      <!-- Levels dynamically added via JavaScript -->
+    </div>
+    <button id="back-to-home-from-levels">Back</button>
   </div>
 
-  <!-- Game Screen -->
-  <div id="game-screen" class="screen">
+  <!-- Settings Screen -->
+  <div id="settings-screen" class="screen">
     <img src="assets/icons/logo.png" alt="Game Logo" class="logo">
-    <h1 id="level-title">Level 1</h1>
-    <p id="question"></p>
-    <div id="options"></div>
-    <button onclick="goToLevels()">Back</button>
+    <h1>Settings</h1>
+    <div class="settings-option">
+      <label for="vibration-toggle">Vibration</label>
+      <input type="checkbox" id="vibration-toggle">
+    </div>
+    <div class="settings-option">
+      <label for="volume-toggle">Volume</label>
+      <input type="checkbox" id="volume-toggle">
+    </div>
+    <div class="settings-option">
+      <label for="music-toggle">Game Music</label>
+      <input type="checkbox" id="music-toggle">
+    </div>
+    <button id="back-to-home-from-settings">Back</button>
   </div>
 
   <script src="script.js"></script>
