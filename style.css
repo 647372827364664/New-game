@@ -93,3 +93,27 @@ button:hover {
     transform: translateY(0);
   }
 }
+/* Logo Styling */
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  animation: fadeIn 1.5s;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-image: url('assets/backgrounds/background1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Other existing styles remain unchanged */
