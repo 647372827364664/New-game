@@ -1,14 +1,10 @@
- remain unchanged */
-/* Logo Styling */
-.logo {
-  width: 120px;
-  height: auto;
-  margin: 20px auto;
-  display: block;
-  animation: fadeIn 1.5s;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* General Styles */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -16,50 +12,194 @@ body {
   padding: 0;
   background-color: #282c34;
   color: white;
-  background-size: cover;
+  background-size: cover; /* Fullscreen background */
   background-position: center;
   background-repeat: no-repeat;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.logo {
+  width: 20%; /* Scales with screen size */
+  max-width: 150px; /* Prevents logo from being too large */
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  animation: fadeIn 1.5s ease-in-out; /* Smooth fade-in */
+}
+
+/* Screen container styles */
+.screen {
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Input fields */
 input {
   margin: 10px auto;
   padding: 10px;
   width: 80%;
   max-width: 300px;
+  border: 2px solid #ffffff33; /* Transparent white border */
   border-radius: 5px;
-  border: none;
+  background-color: #00000080; /* Semi-transparent black background */
+  color: white;
   font-size: 1rem;
   text-align: center;
 }
 
-button {
-  margin: 10px auto;
-  padding: 15px 30px;
-  font-size: 1rem;
-  color: #fff;
-  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.toggle-password:hover {
+  color: #ff7e5f;
+}
+
+/* Custom Buttons */
+button {
+  width: 70%;
+  max-width: 300px;
+  padding: 15px;
+  font-size: 1rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 10px auto;
+  background-image: url('assets/icons/custom-button.png'); /* Placeholder for your custom button image */
+  background-size: contain; /* Ensures the image fits inside the button */
+  background-repeat: no-repeat;
+  background-position: center;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 button:hover {
+  transform: scale(1.05);
+  animation: buttonGlow 0.5s infinite alternate;
+}
+
+@keyframes buttonGlow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 126, 95, 0.6);
+  }
+}
+
+/* Button container layout */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Shop sections */
+.shop-section {
+  margin: 20px;
+  text-align: center;
+}
+
+.shop-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.custom-button {
+  background-image: url('assets/icons/custom-shop-button.png'); /* Placeholder for shop button */
+  background-size: cover;
+  background-position: center;
+  width: 200px;
+  height: 80px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.custom-button:hover {
   transform: scale(1.1);
-  box-shadow: 0px 0px 15px rgba(255, 126, 95, 0.6);
+  box-shadow: 0 0 15px rgba(255, 126, 95, 0.6);
 }
 
-.screen {
-  display: none;
-  animation: fadeIn 1s;
+/* Settings options */
+.settings-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #00000060; /* Semi-transparent black */
+  border-radius: 10px;
 }
 
-.screen.active {
-  display: block;
+.settings-option label {
+  font-size: 1.2rem;
 }
 
-p {
-  margin: 5px;
+.settings-option input[type="checkbox"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+/* Levels grid */
+#levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.level-button {
+  width: 100%;
+  padding: 20px;
+  background-image: url('assets/icons/custom-level-button.png'); /* Placeholder for level button */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.level-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
 /* Animations */
@@ -70,4 +210,4 @@ p {
   to {
     opacity: 1;
   }
-}
+ }
